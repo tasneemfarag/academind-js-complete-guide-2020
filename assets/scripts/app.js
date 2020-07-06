@@ -15,6 +15,7 @@ const enteredValue = prompt('Maximum life for you and the monster.', '100');
 
 let chosenMaxLife = parseInt(enteredValue);
 let battleLog = [];
+let lastLoggedEntry = 0;
 
 if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
   chosenMaxLife = 100;
@@ -72,8 +73,8 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
         finalPlayerHealth: playerHealth
       };
       break;
-      default:
-        logEntry = {};  
+    default:
+      logEntry = {};
   }
   // if (ev === LOG_EVENT_PLAYER_ATTACK) {
   //   logEntry.target = 'MONSTER';
@@ -169,7 +170,7 @@ function endRound() {
 }
 
 function attackMonster(mode) {
-  const maxDamage = mode === MODE_ATTACK ? ATTACK_VALUE : STRONG_ATTACK_VALUE; 
+  const maxDamage = mode === MODE_ATTACK ? ATTACK_VALUE : STRONG_ATTACK_VALUE;
   const logEvent = mode === MODE_ATTACK ? LOG_EVENT_PLAYER_ATTACK : LOG_EVENT_PLAYER_STRONG_ATTACK;
   // if (mode === MODE_ATTACK) {
   //   maxDamage = ATTACK_VALUE;
@@ -218,8 +219,22 @@ function healPlayerHandler() {
 
 function printLogHandler() {
   // for(let i = 0; i < 3; i++) {
-  //   console.log(battleLog);
+  //   console.log('-----------');
   // }
+
+  // let j = 0;
+  // while (j < 3) {
+  //   console.log('-----------');
+  //   j++;
+  // }
+
+  let j = 0;
+
+  do {
+    console.log(j);
+    j++;
+  } while (j < 3);
+
 
   // for (let i = 0; i < battleLog.length; i++ ) {
   //   console.log(battleLog[i]);
@@ -229,11 +244,15 @@ function printLogHandler() {
     // console.log(logEntry);
     // console.log(i);
     // i++;
-    console.log(`#${i}`);
-    for (const key in logEntry) {
-      console.log(key);
-     // console.log(battleLog[key]);
-      console.log(`${key} => ${logEntry[key]}`);
+    if (!lastLoggedEntry && lastLoggedEntry !==0 || lastLoggedEntry < i) {
+      console.log(`#${i}`);
+      for (const key in logEntry) {
+        console.log(key);
+        // console.log(battleLog[key]);
+        console.log(`${key} => ${logEntry[key]}`);
+      }
+      lastLoggedEntry = i;
+      break;
     }
     i++;
   }
