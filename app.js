@@ -42,16 +42,16 @@ const getWinner = (cChoice, pChoice = DEFAULT_USER_CHOICE) =>
         cChoice === PAPER && pChoice === SCISSORS ||
         cChoice === SCISSORS && pChoice === ROCK) ? RESULT_PLAYER_WINS : RESULT_COMPUTER_WINS;
 
-    // if (cChoice === pChoice) {
-    //     return RESULT_DRAW;
-    // } else if (cChoice === ROCK && pChoice === PAPER ||
-    //     cChoice === PAPER && pChoice === SCISSORS ||
-    //     cChoice === SCISSORS && pChoice === ROCK
-    // ) {
-    //     return RESULT_PLAYER_WINS;
-    // } else {
-    //     return RESULT_COMPUTER_WINS;
-    // }
+// if (cChoice === pChoice) {
+//     return RESULT_DRAW;
+// } else if (cChoice === ROCK && pChoice === PAPER ||
+//     cChoice === PAPER && pChoice === SCISSORS ||
+//     cChoice === SCISSORS && pChoice === ROCK
+// ) {
+//     return RESULT_PLAYER_WINS;
+// } else {
+//     return RESULT_COMPUTER_WINS;
+// }
 
 
 startGameBtn.addEventListener('click', () => {
@@ -63,12 +63,12 @@ startGameBtn.addEventListener('click', () => {
     const playerChoice = getPlayerChoice(); //might be undefind
     const computerChoice = getComputerChoice();
     let winner;
-    if(playerChoice) {
+    if (playerChoice) {
         winner = getWinner(computerChoice, playerChoice);
-    }else {
+    } else {
         winner = getWinner(computerChoice);
     }
-    
+
     let message = `You picked ${playerChoice ? playerChoice : DEFAULT_USER_CHOICE}, computer picked ${computerChoice}, therefor you `;
     if (winner === RESULT_DRAW) {
         message = message + 'had a draw.';
@@ -76,7 +76,7 @@ startGameBtn.addEventListener('click', () => {
         message = message + 'won.';
     } else {
         message = message + 'lost.'
-    } 
+    }
     alert(message);
     gameIsRunning = false;
 });
@@ -84,22 +84,33 @@ startGameBtn.addEventListener('click', () => {
 
 // not related to the game
 
-const sumUp = (a, b, ...numbers) => {
+const combine = (resultHandler, operation, ...numbers) => {
+    const validateNumber = (number) => {
+        return isNaN(number) ? 0 : number;
+    };
     let sum = 0;
     for (const num of numbers) {
-        sum += num;
+        if (operation === 'ADD') {
+            sum += validateNumber(num);
+        } else {
+            sum -= validateNumber(num);
+        }
     }
-    return sum;
+    resultHandler(sum);
 };
 
-const subtractUp = function () {
-    let sum = 0;
-    for (const num of arguments) {
-        sum -= num;
-    }
-    return sum;
+// const subtractUp = function (resultHandler, ...numbers) {
+//     let sum = 0;
+//     for (const num of numbers) { 
+//         sum -= num;
+//     }
+//     resultHandler(sum, 'The result after adding all numbers is ');
+// };
+
+const showResult = (messageText, result) => {
+    alert(messageText + ' ' + result);
 }
 
-console.log(sumUp(1, 5, 10, -3, 6, 10));
-console.log(sumUp(1, 5, 10, -3, 6, 10, 25, 88));
-console.log(subtractUp(1, 10, 15, 20));
+combine(showResult.bind(this, 'The result after adding all numbersis :'), 'ADD', 1, 5, 10, -3, 6, 10);
+combine(showResult.bind(this, 'The result after adding all numbersis :'), 'ADD', 1, 5, 10, -3, 6, 10, 25, 88);
+combine(showResult.bind(this, 'The result after subtracting all numbersis :'), 'SUBTRACT', 1, 10, 15, 20);
