@@ -128,3 +128,32 @@ const sum = prices.reduce((preValue, curValue, curIndex, prices) => {
 // const sum = prices.reduce((preValue, curValue) => preValue + curValue, 0); it can be shorter this way
 
 console.log(sum);
+
+// const originalArray = [{price: 10.99}, {price: 5.99}, {price: 29.99}];
+// const sum = originalArray.map(obj => obj.price).reduce((sumVal, curVal) => sumVal + curVal, 0); // => 46.97
+
+const data = 'new york;10.99;2000';
+
+const transformedData = data.split(';');
+transformedData[1] = +transformedData[1];
+
+console.log(transformedData);
+
+const nameFragments = ['Max', 'Schwarz'];
+const name = nameFragments.join(' ');
+console.log(name);
+
+const copiedNameFragments = [...nameFragments];
+nameFragments.push('Mr');
+console.log(nameFragments, copiedNameFragments);
+
+console.log(Math.min(...prices));
+
+const persons = [{name: 'Max', age: 30}, {name: 'Manuel', age: 31}];
+const copiedPersons = [...persons]; // It's important to remmeber that here we only copy the the array but
+//have the address of the objects inside the array so if we change the object value will see it in the copied one.
+
+persons.push({name: 'Anna', age: 29});
+persons[0].age = 31;
+
+console.log(persons, copiedPersons);
