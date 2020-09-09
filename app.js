@@ -86,32 +86,32 @@
 
 // console.log(taxAdjustedPrices);
 
-const prices = [10.99, 5.99, 3.99, 6.59];
-const tax = 0.19;
+// const prices = [10.99, 5.99, 3.99, 6.59];
+// const tax = 0.19;
 
-const taxAdjustedPrices = prices.map((price, idx, prices) => {
-    const priceObj = {index: idx, taxAdjPrice: price * (1 + tax)}
-    return priceObj;
-})
+// const taxAdjustedPrices = prices.map((price, idx, prices) => {
+//     const priceObj = {index: idx, taxAdjPrice: price * (1 + tax)}
+//     return priceObj;
+// })
 
 // console.log(prices, taxAdjustedPrices);
 
-const sortedPrices = prices.sort((a, b) => {
-    if (a > b) {
-        return 1; // if it returns -1 it will reverse the array
-    } else if (a === b) {
-        return 0;
-    } else {
-        return -1; // if it returns 1 it will reverse the array
-    }
-});
+// const sortedPrices = prices.sort((a, b) => {
+//     if (a > b) {
+//         return 1; // if it returns -1 it will reverse the array
+//     } else if (a === b) {
+//         return 0;
+//     } else {
+//         return -1; // if it returns 1 it will reverse the array
+//     }
+// });
 
 // console.log(sortedPrices.reverse());
-console.log(sortedPrices);
+// console.log(sortedPrices);
 
-const filteredArray = prices.filter(price => price > 6); // this where the arrow function shine
+// const filteredArray = prices.filter(price => price > 6); // this where the arrow function shine
 
-console.log(filteredArray);
+// console.log(filteredArray);
 
 // let sum = 0;
 
@@ -121,39 +121,47 @@ console.log(filteredArray);
 
 // console.log(sum);
 
-const sum = prices.reduce((preValue, curValue, curIndex, prices) => {
-    return preValue + curValue;
-}, 0);
+// const sum = prices.reduce((preValue, curValue, curIndex, prices) => {
+//     return preValue + curValue;
+// }, 0);
 
 // const sum = prices.reduce((preValue, curValue) => preValue + curValue, 0); it can be shorter this way
 
-console.log(sum);
+// console.log(sum);
 
 // const originalArray = [{price: 10.99}, {price: 5.99}, {price: 29.99}];
 // const sum = originalArray.map(obj => obj.price).reduce((sumVal, curVal) => sumVal + curVal, 0); // => 46.97
 
-const data = 'new york;10.99;2000';
+// const data = 'new york;10.99;2000';
 
-const transformedData = data.split(';');
-transformedData[1] = +transformedData[1];
+// const transformedData = data.split(';');
+// transformedData[1] = +transformedData[1];
 
-console.log(transformedData);
+// console.log(transformedData);
 
-const nameFragments = ['Max', 'Schwarz'];
-const name = nameFragments.join(' ');
-console.log(name);
+// const nameFragments = ['Max', 'Schwarz'];
+// const name = nameFragments.join(' ');
+// console.log(name);
 
-const copiedNameFragments = [...nameFragments];
-nameFragments.push('Mr');
-console.log(nameFragments, copiedNameFragments);
+// const copiedNameFragments = [...nameFragments];
+// nameFragments.push('Mr');
+// console.log(nameFragments, copiedNameFragments);
 
-console.log(Math.min(...prices));
+// console.log(Math.min(...prices));
 
-const persons = [{name: 'Max', age: 30}, {name: 'Manuel', age: 31}];
-const copiedPersons = [...persons]; // It's important to remmeber that here we only copy the the array but
+// const persons = [{name: 'Max', age: 30}, {name: 'Manuel', age: 31}];
+// const copiedPersons = [...persons]; // It's important to remmeber that here we only copy the the array but
 //have the address of the objects inside the array so if we change the object value will see it in the copied one.
 
-persons.push({name: 'Anna', age: 29});
-persons[0].age = 31;
+// persons.push({name: 'Anna', age: 29});
+// persons[0].age = 31;
 
-console.log(persons, copiedPersons);
+// console.log(persons, copiedPersons);
+
+const nameData = ['Max', 'Schwarz', 'Mr', 30];
+// const firstName = nameData[0];
+// const lastName = nameData[1];
+
+const [ firstName, lastName, ...otherInformation ] = nameData;
+
+console.log(firstName, lastName, otherInformation);
